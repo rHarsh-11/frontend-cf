@@ -39,7 +39,7 @@ export default function DashboardPage() {
   const handleNewSession = async () => {
     try {
       const { data } = await axios.post(
-        'http://localhost:5000/api/sessions/new',
+        `${baseURL}/api/sessions/new`,
         {},
         {
           headers: {
