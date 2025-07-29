@@ -53,7 +53,7 @@ export default function ChatPanel({ sessionId, initialChat, onUpdateCode }: Chat
 
       // 💾 Save chat turn
       await axios.post(
-        `http://localhost:5000/api/sessions/${sessionId}/chat`,
+        `${baseURL}/api/sessions/${sessionId}/chat`,
         {
           sender: 'ai',
           message: aiReply.content,
