@@ -28,10 +28,11 @@ export default function PlaygroundPage() {
   const [session, setSession] = useState<SessionType | null>(null);
   const [loading, setLoading] = useState(true);
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const fetchSession = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:5000/api/sessions/${id}`, {
+      const { data } = await axios.get(`${baseURL}/api/sessions/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSession({

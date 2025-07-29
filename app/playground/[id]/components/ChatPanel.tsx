@@ -24,7 +24,7 @@ export default function ChatPanel({ sessionId, initialChat, onUpdateCode }: Chat
   }, [initialChat]);
 
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const sendMessage = async () => {
     if (!input.trim()) return;
 
@@ -37,7 +37,7 @@ export default function ChatPanel({ sessionId, initialChat, onUpdateCode }: Chat
     try {
       // 🔁 Get AI response
       const { data } = await axios.post(
-        `http://localhost:5000/api/sessions/${sessionId}/prompt`,
+        `${baseURL}/api/sessions/${sessionId}/prompt`,
         { prompt: input },
         { headers: { Authorization: `Bearer ${token}` } }
       );

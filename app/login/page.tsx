@@ -8,7 +8,8 @@ export default function LoginPage() {
   const router = useRouter();
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
-
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -16,7 +17,7 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post('http://localhost:5000/api/auth/login', form);
+      const { data } = await axios.post(`${baseURL}/api/auth/login`, form);
       localStorage.setItem('token', data.token);
       router.push('/dashboard');
     } catch (err: any) {

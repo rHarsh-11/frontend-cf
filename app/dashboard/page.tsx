@@ -8,6 +8,7 @@ export default function DashboardPage() {
   const router = useRouter();
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
 
@@ -19,7 +20,7 @@ export default function DashboardPage() {
 
     const fetchSessions = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/sessions', {
+        const { data } = await axios.get(`${baseURL}/api/sessions`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
